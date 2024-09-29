@@ -118,7 +118,7 @@ const BulkImageUpload: React.FC = () => {
 
   const handleDeleteImage = async (imageId: string) => {
     try {
-      const response = await fetch(`https://render.com/docs/web-services#port-binding/api/users/delete/${imageId}`, {
+      const response = await fetch(`https://stockimage-u224.onrender.com/api/users/delete/${imageId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -153,7 +153,7 @@ const BulkImageUpload: React.FC = () => {
 
 
 
-      const response = await fetch(`https://render.com/docs/web-services#port-binding/api/users/update/${imageId}`, {
+      const response = await fetch(`https://stockimage-u224.onrender.com/api/users/update/${imageId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -218,7 +218,7 @@ const BulkImageUpload: React.FC = () => {
 
   const fetchUserImages = async () => {
     try {
-      const response = await fetch('https://render.com/docs/web-services#port-binding/api/users/images', {
+      const response = await fetch('https://stockimage-u224.onrender.com/api/users/images', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -256,7 +256,7 @@ const BulkImageUpload: React.FC = () => {
     }));
 
     try {
-      const response = await fetch(`https://render.com/docs/web-services#port-binding/api/users/update-order`, {
+      const response = await fetch(`https://stockimage-u224.onrender.com/api/users/update-order`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',

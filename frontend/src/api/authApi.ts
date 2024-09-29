@@ -6,7 +6,7 @@ interface ImageUploadResponse {
 
 const authApi = createApi({
     reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://render.com/docs/web-services#port-binding/' , credentials: 'include' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://stockimage-u224.onrender.com/api/' , credentials: 'include' }),
     endpoints: (builder) => ({
         registerUser: builder.mutation({
             query: (userData) => ({
