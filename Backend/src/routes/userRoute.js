@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const authController_1 = __importDefault(require("../controllers/authController"));
+const multer_1 = __importDefault(require("multer"));
+const authMiddleware_1 = __importDefault(require("../middleware/authMiddleware"));
+const userRoute = (0, express_1.Router)();
+const upload = (0, multer_1.default)();
+userRoute.post('/signup', authController_1.default.userRegistration);
+userRoute.post('/login', authController_1.default.userLogin);
+userRoute.post('/verifyotp', authController_1.default.verifyOtp);
+userRoute.post('/upload', authMiddleware_1.default, upload.array('images'), authController_1.default.bulkImageUpload);
+userRoute.get('/images/:userId', authController_1.default.fetchImages);
+userRoute.put('/update-order', authController_1.default.updateImageOrder);
+userRoute.delete('/delete/:imageId', authController_1.default.deleteImage);
+userRoute.put('/update/:imageId', upload.single('file'), authController_1.default.updateImage);
+exports.default = userRoute;
