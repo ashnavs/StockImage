@@ -17,7 +17,7 @@ const app = express();
 app.use(express.json())
 
 const corsOptions = {
-    origin: 'https://stock-image-lmr1cv25g-ashna-v-ss-projects.vercel.app', 
+    origin: 'https://stock-image-three.vercel.app', 
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
@@ -29,12 +29,12 @@ app.use(cors(corsOptions));
 
 
 // Ensure headers are sent with each response
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://stock-image-lmr1cv25g-ashna-v-ss-projects.vercel.app');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-  });
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', 'https://stock-image-lmr1cv25g-ashna-v-ss-projects.vercel.app');
+//     res.header('Access-Control-Allow-Credentials', 'true');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//     next();
+//   });
 
 const port = process.env.PORT || 5000;
 
