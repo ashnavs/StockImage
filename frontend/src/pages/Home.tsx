@@ -147,21 +147,16 @@ const BulkImageUpload: React.FC = () => {
   };
 
   const handleUpdateImage = async (imageId: string, updatedTitle: string, newFile?: File) => {
-
     if (!updatedTitle.trim()) {
-      toast.error('Title cannot be empty!');
-      return;
-    }
- 
-    if (newFile && !newFile.type.startsWith('image/')) {
-      toast.error('Please select a valid image file!');
-      return;
+      toast.error('Title cannot be empty');
+      return; 
     }
   
     try {
       const formData = new FormData();
+  
       if (newFile) {
-        formData.append('file', newFile);  
+        formData.append('file', newFile);
       }
       formData.append('title', updatedTitle);
   
@@ -177,17 +172,19 @@ const BulkImageUpload: React.FC = () => {
         throw new Error("Failed to update image");
       }
   
+      // Refresh data after successful update
       refetch();
       toast.success('Image updated successfully!');
   
       // Reset editing state
       setEditingImageId(null);
-      setEditedTitle(''); 
+      setEditedTitle('');
       setNewFile(undefined);
     } catch (error) {
       console.error("Error updating image:", error);
     }
   };
+  
   
 
 
