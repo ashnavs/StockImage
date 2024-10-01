@@ -49,17 +49,41 @@ const SignUpForm: React.FC = () => {
         }
     }, []);
 
+
+
     const validationSchema = Yup.object({
-        firstName: isSignIn ? Yup.string().notRequired() : Yup.string().required('First name is required'),
-        lastName: isSignIn ? Yup.string().notRequired() : Yup.string().required('Last name is required'),
-        email: Yup.string().email('Invalid email format').required('Email is required'),
-        phone: isSignIn ? Yup.string().notRequired() : Yup.string()
-            .required('Phone number is required')
-            .matches(/^[0-9]+$/, 'Phone number must contain only numbers'),
+        firstName: isSignIn
+            ? Yup.string().notRequired()
+            : Yup.string()
+                .trim()
+                .required('First name is required')
+                .matches(/^\S+$/, 'First name cannot be empty or contain only spaces'),
+        
+        lastName: isSignIn
+            ? Yup.string().notRequired()
+            : Yup.string()
+                .trim()
+                .required('Last name is required')
+                .matches(/^\S+$/, 'Last name cannot be empty or contain only spaces'),
+        
+        email: Yup.string()
+            .trim()
+            .email('Invalid email format')
+            .required('Email is required'),
+        
+        phone: isSignIn
+            ? Yup.string().notRequired()
+            : Yup.string()
+                .required('Phone number is required')
+                .matches(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits'),
+        
         password: Yup.string()
+            .trim()
             .min(6, 'Password must be at least 6 characters')
-            .required('Password is required'),
+            .required('Password is required')
+            .matches(/^\S+$/, 'Password cannot contain only spaces'),
     });
+    
 
  
     

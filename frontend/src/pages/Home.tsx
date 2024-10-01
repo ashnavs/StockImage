@@ -19,6 +19,7 @@ import ImageItem from './ImageItem';
 
 
 
+
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user?.name);
@@ -32,6 +33,14 @@ const Header: React.FC = () => {
     navigate('/', { replace: true }); 
   };
 
+  useEffect(() => {
+    window.onpopstate = () => {
+
+      navigate('/home');
+    };
+  }, [navigate]);
+  
+  
   return (
     <nav className="bg-gray-800 p-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
