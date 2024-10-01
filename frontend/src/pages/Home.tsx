@@ -212,6 +212,7 @@ const BulkImageUpload: React.FC = () => {
       toast.success('Images uploaded successfully!');
 
       refetch();  
+      setUploading(false);
 
     } catch (error: any) {
       console.error('Error uploading files:', error);
