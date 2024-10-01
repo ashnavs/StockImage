@@ -148,20 +148,23 @@ const BulkImageUpload: React.FC = () => {
 
   const handleUpdateImage = async (imageId: string, updatedTitle: string, newFile?: File) => {
 
+    if (!updatedTitle.trim()) {
+      toast.error('Title cannot be empty!');
+      return;
+    }
+ 
+    if (newFile && !newFile.type.startsWith('image/')) {
+      toast.error('Please select a valid image file!');
+      return;
+    }
+  
     try {
       const formData = new FormData();
-      console.log(imageId, newFile, updatedTitle)
       if (newFile) {
         formData.append('file', newFile);  
       }
       formData.append('title', updatedTitle);
-
-      for (let pair of formData.entries()) {
-        console.log(`${pair[0]}: ${pair[1]}`);
-      }
-
-
-
+  
       const response = await fetch(`https://stockimage-u224.onrender.com/api/users/update/${imageId}`, {
         method: "PUT",
         headers: {
@@ -169,17 +172,14 @@ const BulkImageUpload: React.FC = () => {
         },
         body: formData,
       });
-
-      console.log(response)
-
-
+  
       if (!response.ok) {
         throw new Error("Failed to update image");
       }
-
+  
       refetch();
       toast.success('Image updated successfully!');
-
+  
       // Reset editing state
       setEditingImageId(null);
       setEditedTitle(''); 
@@ -188,6 +188,7 @@ const BulkImageUpload: React.FC = () => {
       console.error("Error updating image:", error);
     }
   };
+  
 
 
 
