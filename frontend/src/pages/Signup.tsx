@@ -38,6 +38,7 @@ const SignUpForm: React.FC = () => {
     const [registerUser] = useRegisterUserMutation();
     const [loginUser] = useLoginUserMutation(); 
     const [verifyOtp] = useVerifyOtpMutation(); 
+    const token = Cookies.get('token')
   
 
     console.log(userId)
@@ -48,6 +49,15 @@ const SignUpForm: React.FC = () => {
             setUserId(storedUserId);
         }
     }, []);
+
+    useEffect(() => {
+        if(token){
+            navigate('/home');
+        }
+            
+         
+        
+      }, []);
 
 
 
